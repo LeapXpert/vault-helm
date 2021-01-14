@@ -224,6 +224,9 @@ server:
     path: "/v1/sys/health?standbyok=true"
     initialDelaySeconds: 60
 
+  # Used to set the termination grace period of the stateful set
+  terminationGracePeriodSeconds: 10
+
   # Used to set the sleep time during the preStop step
   preStopSleepSeconds: 5
 
