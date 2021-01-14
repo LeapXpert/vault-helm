@@ -295,6 +295,9 @@ server:
     # Number of seconds after which the probe times out.
     timeoutSeconds: 3
 
+  # Used to set the termination grace period of the stateful set
+  terminationGracePeriodSeconds: 10
+
   # Used to set the sleep time during the preStop step
   preStopSleepSeconds: 5
 
