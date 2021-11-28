@@ -1,12 +1,15 @@
 {{- if and (eq (.Values.injector.enabled | toString) "true" ) (eq (.Values.global.enabled | toString) "true") }}
+{{- range .Values.global.appliedNamespaces }}
+---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
+kind: Role
 metadata:
-  name: {{ template "vault.fullname" . }}-agent-injector-clusterrole
+  name: {{ template "vault.fullname" $ }}-agent-injector-clusterrole
+  namespace: {{ . }}
   labels:
-    app.kubernetes.io/name: {{ include "vault.name" . }}-agent-injector
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/name: {{ include "vault.name" $ }}-agent-injector
+    app.kubernetes.io/instance: {{ $.Release.Name }}
+    app.kubernetes.io/managed-by: {{ $.Release.Service }}
 rules:
 - apiGroups: ["admissionregistration.k8s.io"]
   resources: ["mutatingwebhookconfigurations"]
@@ -15,4 +18,5 @@ rules:
     - "list"
     - "watch"
     - "patch"
+{{ end }}
 {{ end }}

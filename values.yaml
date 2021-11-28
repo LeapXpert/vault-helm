@@ -22,6 +22,7 @@ global:
       apparmor.security.beta.kubernetes.io/allowedProfileNames: runtime/default
       seccomp.security.alpha.kubernetes.io/defaultProfileName:  runtime/default
       apparmor.security.beta.kubernetes.io/defaultProfileName:  runtime/default
+  appliedNamespaces: []
 
 injector:
   # True if you want to enable vault agent injection.
